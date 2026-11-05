@@ -1,7 +1,7 @@
 # opencode-desktop-terminal-theme
 
 > **Authentic OpenCode TUI console markdown colors and theme styling for OpenCode Desktop.**  
-> 🌐 *[Документация на русском языке (Russian documentation)](./README_ru.md)*
+> 🌐 *[Документация на русском языке (Russian documentation)](./README_RU.md)*
 
 ---
 
@@ -97,7 +97,7 @@ opencode-desktop-terminal-theme/
 ├── package.json
 ├── LICENSE                   # MIT License
 ├── README.md                 # English documentation
-└── README_ru.md              # Russian documentation
+└── README_RU.md              # Russian documentation
 ```
 
 ---
