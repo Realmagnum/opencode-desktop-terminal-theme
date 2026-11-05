@@ -125,8 +125,8 @@ ${prefix}[data-component="dock-prompt"] textarea {
   background-color: var(--v2-background-bg-layer-02, rgba(255, 255, 255, 0.08));
 }
 .terminal-theme-settings-btn svg {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
 }
 `
 }
@@ -192,8 +192,8 @@ function setupExtensionSettingsGearInjection() {
             navigateToThemeSettings()
           })
 
-          // Insert gear button right before the switch / after reload button
-          actions.insertBefore(btn, actions.lastElementChild)
+          // Insert gear button before Reload button to preserve vertical alignment of Reload & Switch
+          actions.insertBefore(btn, actions.firstElementChild)
         }
       }
     }
