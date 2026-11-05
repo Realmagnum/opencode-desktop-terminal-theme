@@ -1,66 +1,68 @@
 # opencode-desktop-terminal-theme
 
-> **Аутентичная консольная цветовая палитра OpenCode TUI для OpenCode Desktop.**  
-> *Authentic OpenCode TUI console markdown colors and theme styling for OpenCode Desktop.*
+> **Authentic OpenCode TUI console markdown colors and theme styling for OpenCode Desktop.**  
+> 🌐 *[Документация на русском языке (Russian documentation)](./README_ru.md)*
 
 ---
 
-## 📖 Описание / Description
+## 📖 Description
 
-В десктопном приложении OpenCode (на базе Electron) компонент рендеринга Markdown (`[data-component="markdown"]`) принудительно отображает заголовки, списки и инлайн-код в базовом сером цвете (`var(--v2-text-text-base)`), а также рисует серые фоновые плашки вокруг инлайн-кода. 
+In OpenCode Desktop (Electron client), the Markdown rendering component (`[data-component="markdown"]`) defaults to a monochrome grey appearance for headings, list markers, and inline code, while rendering grey pill badges around inline code snippets.
 
-Из-за этого сессия в Desktop-клиенте выглядит монохромной, в то время как в консольном терминале (**OpenCode TUI**) тот же самый диалог раскрашен в яркие, контрастные и легко читаемые цвета.
+Meanwhile, the terminal version (**OpenCode TUI**) renders rich, readable, and distinct colors for every markdown element.
 
-Данный плагин восстанавливает **100% идентичность консольной темы OpenCode TUI** внутри десктопного приложения через официальный механизм расширений GUI (`@opencode/plugin/gui`).
+This plugin brings **100% parity with the OpenCode TUI console theme** to OpenCode Desktop using the official GUI extension API (`@opencode/plugin/gui`).
 
-*(Связано с upstream issue [#61221](https://github.com/anomalyco/opencode/issues/61221) и [#54235](https://github.com/anomalyco/opencode/issues/54235)).*
-
----
-
-## ✨ Что меняется / Key Features
-
-- **Заголовки (`h1`–`h6`)**: фирменный лавандово-фиолетовый цвет консоли (`#9d7cd8`, `$hue.accent.200`).
-- **Жирный текст (`**bold**`, `strong`)**: тёплый янтарно-горчичный оттенок (`#f5a742`, `markdown.strong`).
-- **Курсив (`*italic*`, `em`)**: золотистый цвет (`#e5c07b`, `markdown.emphasis`).
-- **Инлайн-код (`code`)**: яркий салатово-зелёный (`#7fd88f`, `$hue.green.200`) **без раздражающей серой подложки** (`background: transparent`).
-- **Нумерованные списки (`1.`, `2.`, `3.`)**: бирюзово-голубые маркеры (`#56b6c2`, `$hue.cyan.200`).
-- **Маркированные списки (`•`)**: персиково-оранжевые маркеры (`#fab283`, `$hue.interactive.200`).
-- **Ссылки (`a`)**: бирюзово-голубые (`#56b6c2`).
-- **Цитаты (`blockquote`)**: золотистый текст с бирюзовой вертикальной чертой слева.
-- **Поле ввода (Composer / Prompt)**: зафиксирован чистый белый цвет набираемого текста (`#ffffff`).
-- **Обычный текст сообщений**: комфортный светло-серый консольный текст (`#eeeeee`).
+*(Related upstream discussions: [#61221](https://github.com/anomalyco/opencode/issues/61221) and [#54235](https://github.com/anomalyco/opencode/issues/54235)).*
 
 ---
 
-## 🎨 Спецификация токенов / Design Tokens Reference
+## ✨ Features
 
-| Элемент Markdown | Токен в TUI | HEX-цвет | Визуальный цвет |
+- **Headings (`h1`–`h6`)**: Authentic console lavender purple (`#9d7cd8`, `$hue.accent.200`).
+- **Bold text (`**bold**`, `strong`)**: Warm mustard-amber (`#f5a742`, `markdown.strong`).
+- **Italic (`*italic*`, `em`)**: Soft golden (`#e5c07b`, `markdown.emphasis`).
+- **Inline code (`code`)**: Mint green (`#7fd88f`, `$hue.green.200`) with **transparent background** (removes the grey badge).
+- **Numbered lists (`1.`, `2.`, `3.`)**: Cyan blue list enumeration markers (`#56b6c2`, `$hue.cyan.200`).
+- **Bullet lists (`•`)**: Peach orange list bullet markers (`#fab283`, `$hue.interactive.200`).
+- **Links (`a`)**: Cyan blue (`#56b6c2`).
+- **Blockquotes (`blockquote`)**: Golden text with cyan accent bar.
+- **Sidebar & Inactive Sessions**: Soft readable silver (`#8a8a8a`), eliminating extreme dimming while keeping the active session prominent.
+- **Composer / Prompt Input**: Pure crisp white text (`#ffffff`).
+- **Prose text**: Comfortable light grey (`#eeeeee`, `neutral.200`).
+
+---
+
+## 🎨 Design Tokens Reference
+
+| Markdown Element | TUI Source Token | HEX Color | Visual Preview |
 |---|---|---|---|
-| **Заголовки (`h1`–`h6`)** | `$hue.accent.200` | `#9d7cd8` | 🪻 Лавандово-фиолетовый |
-| **Жирный текст (`strong`)** | `markdown.strong` | `#f5a742` | 🍯 Янтарно-горчичный |
-| **Курсив (`em`)** | `markdown.emphasis` | `#e5c07b` | 🌾 Золотистый |
-| **Инлайн-код (`code`)** | `$hue.green.200` | `#7fd88f` | 🍃 Салатово-зелёный |
-| **Списки нумерованные (`ol`)** | `$hue.cyan.200` | `#56b6c2` | 🌊 Бирюзово-голубой |
-| **Списки маркеры (`ul`)** | `$hue.interactive.200` | `#fab283` | 🍑 Персиково-оранжевый |
-| **Ссылки (`a`)** | `$hue.cyan.200` | `#56b6c2` | 🌊 Бирюзово-голубой |
-| **Цитаты (`blockquote`)** | `markdown.blockQuote` | `#e5c07b` | 🌾 Золотистый |
-| **Разделители (`hr`)** | `$hue.neutral.400` | `#484848` | ⬛ Графитовый |
-| **Поле ввода промпта** | `formfield.base` | `#ffffff` | ⚪ Чистый белый |
-| **Обычный текст** | `$hue.neutral.200` | `#eeeeee` | 🔘 Светло-серый |
+| **Headings (`h1`–`h6`)** | `$hue.accent.200` | `#9d7cd8` | 🪻 Lavender Purple |
+| **Bold (`strong`, `b`)** | `markdown.strong` | `#f5a742` | 🍯 Mustard Amber |
+| **Italic (`em`, `i`)** | `markdown.emphasis` | `#e5c07b` | 🌾 Golden |
+| **Inline code (`code`)** | `$hue.green.200` | `#7fd88f` | 🍃 Mint Green |
+| **Numbered lists (`ol`)** | `$hue.cyan.200` | `#56b6c2` | 🌊 Cyan Blue |
+| **Bullet lists (`ul`)** | `$hue.interactive.200` | `#fab283` | 🍑 Peach Orange |
+| **Links (`a`)** | `$hue.cyan.200` | `#56b6c2` | 🌊 Cyan Blue |
+| **Blockquotes (`blockquote`)** | `markdown.blockQuote` | `#e5c07b` | 🌾 Golden |
+| **Dividers (`hr`)** | `$hue.neutral.400` | `#484848` | ⬛ Graphite |
+| **Inactive Sidebar Items** | `text-v2-text-text-faint` | `#8a8a8a` | 🔘 Balanced Silver |
+| **Active Session** | `text-v2-text-text-base` | `#ffffff` | ⚪ Bright White |
+| **Prompt Input** | `formfield.base` | `#ffffff` | ⚪ Pure White |
 
 ---
 
-## 🚀 Установка / Installation
+## 🚀 Installation
 
-### Способ 1: Локальный плагин (рекомендуемый)
+### Option 1: Local Plugin (Recommended)
 
-1. Клонируйте репозиторий в каталог плагинов OpenCode:
+1. Clone repository to your OpenCode plugins directory:
    ```bash
    mkdir -p ~/.config/opencode/plugins
    git clone https://github.com/Realmagnum/opencode-desktop-terminal-theme.git ~/.config/opencode/plugins/opencode-desktop-terminal-theme
    ```
 
-2. Добавьте плагин в ваш `~/.config/opencode/opencode.json` (или `opencode.jsonc`):
+2. Register the plugin in `~/.config/opencode/opencode.json` (or `opencode.jsonc`):
    ```json
    {
      "plugins": [
@@ -69,44 +71,44 @@
    }
    ```
 
-3. Перезапустите OpenCode Desktop или нажмите **`Cmd + R`** (в окне приложения) для перезагрузки.
+3. Reload OpenCode Desktop by pressing **`Cmd + R`** (or restarting the application).
 
 ---
 
-### Способ 2: Установка из каталога проекта / Symlink
+### Option 2: Symlink from workspace
 
-Если репозиторий уже склонирован в вашей рабочей директории:
 ```bash
 ln -s "$(pwd)" ~/.config/opencode/plugins/opencode-desktop-terminal-theme
 ```
 
 ---
 
-## 📂 Структура репозитория / Repository Layout
+## 📂 Repository Layout
 
 ```text
 opencode-desktop-terminal-theme/
-├── gui-experimental.cjs      # Точка входа GUI-плагина (CommonJS)
+├── gui-experimental.cjs      # GUI plugin entrypoint (CommonJS)
 ├── dist/
-│   └── gui-experimental.cjs # Зеркало для exports
+│   └── gui-experimental.cjs # Distribution entrypoint
 ├── src/
-│   └── index.js             # Точка входа плагина
+│   └── index.js             # Plugin root entry
 ├── themes/
-│   └── opencode-tui.json    # Полный файл темы консоли TUI (для CLI)
+│   └── opencode-tui.json    # Original TUI theme specification
 ├── package.json
 ├── LICENSE                   # MIT License
-└── README.md
+├── README.md                 # English documentation
+└── README_ru.md              # Russian documentation
 ```
 
 ---
 
-## 🛡️ Безопасность и обновления
+## 🛡️ Stability & Compatibility
 
-- Плагин **не изменяет файлы внутри `/Applications/OpenCode.app`** и не слетает при обновлениях приложения.
-- Плагин работает поверх любой выбранной темы оформления в Desktop.
+- **Survives Desktop Updates**: The plugin lives in your user configuration directory (`~/.config/opencode/`), so app updates will not overwrite it.
+- **Universal compatibility**: Enhances markdown styling across all dark themes in OpenCode Desktop.
 
 ---
 
-## 📜 Лицензия / License
+## 📜 License
 
 [MIT](LICENSE) © 2026 Realmagnum
