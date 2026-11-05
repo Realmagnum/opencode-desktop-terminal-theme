@@ -1,0 +1,37 @@
+{
+  "name": "opencode-desktop-terminal-theme",
+  "version": "1.0.0",
+  "description": "Authentic console TUI markdown colors and theme styling for OpenCode Desktop",
+  "author": "Realmagnum <realmagnum@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Realmagnum/opencode-desktop-terminal-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Realmagnum/opencode-desktop-terminal-theme/issues"
+  },
+  "homepage": "https://github.com/Realmagnum/opencode-desktop-terminal-theme#readme",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "opencode-desktop",
+    "opencode-gui",
+    "opencode-theme",
+    "theme",
+    "terminal",
+    "tui",
+    "markdown"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./gui-experimental": "./dist/gui-experimental.cjs"
+  },
+  "files": [
+    "dist",
+    "src",
+    "themes",
+    "gui-experimental.cjs"
+  ]
+}
