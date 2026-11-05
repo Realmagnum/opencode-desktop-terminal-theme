@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Realmagnum/opencode-desktop-terminal-theme.git"
+    "url": "git+https://github.com/Realmagnum/opencode-desktop-terminal-theme.git"
   },
   "bugs": {
     "url": "https://github.com/Realmagnum/opencode-desktop-terminal-theme/issues"
@@ -33,5 +33,16 @@
     "src",
     "themes",
     "gui-experimental.cjs"
-  ]
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@opencode/plugin": "^2.2.5",
+    "solid-js": "^1.9.18",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.6",
+    "vite-plugin-solid": "^2.11.15"
+  }
 }

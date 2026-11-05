@@ -19,6 +19,10 @@ This plugin brings **100% parity with the OpenCode TUI console theme** to OpenCo
 
 ## ✨ Features
 
+- **Dedicated Settings Page**: Added to OpenCode Desktop Settings sidebar (**Settings → Terminal Theme**) with instant live preview.
+- **Flexible Scope Control**:
+  - **Override specific theme only** (e.g. `Solarized`, keeping all other themes untouched).
+  - **Apply to all themes** globally.
 - **Headings (`h1`–`h6`)**: Authentic console lavender purple (`#9d7cd8`, `$hue.accent.200`).
 - **Bold text (`**bold**`, `strong`)**: Warm mustard-amber (`#f5a742`, `markdown.strong`).
 - **Italic (`*italic*`, `em`)**: Soft golden (`#e5c07b`, `markdown.emphasis`).
