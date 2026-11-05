@@ -22,16 +22,32 @@ export function SettingsView(props: Props) {
     >
       {/* Header */}
       <div style={{ "margin-bottom": "28px" }}>
-        <h1
-          style={{
-            "font-size": "20px",
-            "font-weight": "600",
-            margin: "0 0 6px 0",
-            color: "var(--v2-text-text-base, #ffffff)",
-          }}
-        >
-          Terminal Console Theme
-        </h1>
+        <div style={{ display: "flex", "align-items": "center", gap: "8px", "margin-bottom": "6px" }}>
+          <h1
+            style={{
+              "font-size": "20px",
+              "font-weight": "600",
+              margin: "0",
+              color: "var(--v2-text-text-base, #ffffff)",
+            }}
+          >
+            Terminal Console Theme
+          </h1>
+          <span
+            style={{
+              "font-size": "11px",
+              "font-weight": "500",
+              color: "#b392f0",
+              background: "rgba(157, 124, 216, 0.15)",
+              border: "1px solid rgba(157, 124, 216, 0.35)",
+              "border-radius": "10px",
+              padding: "1px 7px",
+              "line-height": "1.4",
+            }}
+          >
+            Plugin
+          </span>
+        </div>
         <p
           style={{
             "font-size": "13px",

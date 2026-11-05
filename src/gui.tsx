@@ -98,6 +98,11 @@ ${prefix}[data-slot="textarea-v2-textarea"],
 ${prefix}[data-component="dock-prompt"] textarea {
   color: #ffffff !important;
 }
+
+/* Distinct highlight for plugin navigation item in Settings sidebar */
+.settings-nav-groups [data-slot="tabs-v2-trigger-wrapper"][data-value="terminal-theme"] [data-slot="tabs-v2-trigger"] svg {
+  color: #9d7cd8 !important;
+}
 `
 }
 
@@ -130,7 +135,7 @@ export default Plugin.define({
     ctx.add(SettingsPage, () => ({
       id: "terminal-theme",
       icon: "terminal-active" as const,
-      title: "Terminal Theme",
+      title: "Terminal Theme · Plugin",
       render: () => <SettingsTab store={ctx.stores.themeSettings} />,
     }))
   },
