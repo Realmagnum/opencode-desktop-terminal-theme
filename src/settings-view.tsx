@@ -96,7 +96,7 @@ export function SettingsView(props: Props) {
                 onChange={() => props.update({ mode: "specific" })}
                 style={{ cursor: "pointer" }}
               />
-              <span>Override specific theme only (recommended: Solarized)</span>
+              <span>Override specific theme only</span>
             </label>
 
             <label

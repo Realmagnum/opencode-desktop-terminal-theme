@@ -31,7 +31,7 @@ export const DEFAULT_THEME_SETTINGS: StoredThemeSettings = {
 }
 
 export const AVAILABLE_THEMES = [
-  { id: "solarized", name: "Solarized (Recommended)" },
+  { id: "solarized", name: "Solarized" },
   { id: "oc-2", name: "OpenCode (Default)" },
   { id: "amoled", name: "AMOLED" },
   { id: "aura", name: "Aura" },
