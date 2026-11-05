@@ -32,7 +32,8 @@
     "dist",
     "src",
     "themes",
-    "gui-experimental.cjs"
+    "gui-experimental.cjs",
+    "README_RU.md"
   ],
   "main": "index.js",
   "scripts": {
