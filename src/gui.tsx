@@ -135,7 +135,7 @@ export default Plugin.define({
     ctx.add(SettingsPage, () => ({
       id: "terminal-theme",
       icon: "terminal-active" as const,
-      title: "Terminal Theme · Plugin",
+      title: "desktop-terminal-theme",
       render: () => <SettingsTab store={ctx.stores.themeSettings} />,
     }))
   },
