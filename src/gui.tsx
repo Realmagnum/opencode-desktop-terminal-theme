@@ -6,6 +6,7 @@ import {
   type StoredThemeSettings,
 } from "./settings"
 import { SettingsView } from "./settings-view"
+import { I18N_CATALOG, type TranslationParams } from "./i18n"
 
 function generateThemeCss(s: StoredThemeSettings): string {
   const prefix = s.mode === "specific" ? `[data-theme="${s.targetTheme}"] ` : ""
@@ -131,7 +132,11 @@ ${prefix}[data-component="dock-prompt"] textarea {
 `
 }
 
-function SettingsTab(props: { store: Persisted<StoredThemeSettings> }) {
+function SettingsTab(props: {
+  store: Persisted<StoredThemeSettings>
+  t: (key: string, params?: TranslationParams) => string
+  locale: () => string | undefined
+}) {
   const settings = (): StoredThemeSettings => ({ ...DEFAULT_THEME_SETTINGS, ...props.store.value })
 
   const update = (patch: Partial<StoredThemeSettings>) => {
@@ -142,7 +147,15 @@ function SettingsTab(props: { store: Persisted<StoredThemeSettings> }) {
     props.store.set(DEFAULT_THEME_SETTINGS)
   }
 
-  return <SettingsView settings={settings} update={update} reset={reset} />
+  return (
+    <SettingsView
+      settings={settings}
+      update={update}
+      reset={reset}
+      t={props.t}
+      locale={props.locale}
+    />
+  )
 }
 
 function setupExtensionSettingsGearInjection() {
@@ -217,6 +230,7 @@ export default Plugin.define({
   stores: {
     themeSettings: Store.global(ThemeSettingsSchema, DEFAULT_THEME_SETTINGS),
   },
+  i18n: I18N_CATALOG,
   setup(ctx) {
     // 1. Reactive style injection following user settings
     ctx.add(Style, () => {
@@ -228,8 +242,14 @@ export default Plugin.define({
     ctx.add(SettingsPage, () => ({
       id: "terminal-theme",
       icon: "terminal-active" as const,
-      title: "Terminal Theme",
-      render: () => <SettingsTab store={ctx.stores.themeSettings} />,
+      title: ctx.t("settings.title"),
+      render: () => (
+        <SettingsTab
+          store={ctx.stores.themeSettings}
+          t={(k, p) => ctx.t(k, p)}
+          locale={() => ctx.locale.locale()}
+        />
+      ),
     }))
 
     // 3. Inject settings gear icon next to Reload in Extensions -> Plugins

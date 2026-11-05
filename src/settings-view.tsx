@@ -1,14 +1,25 @@
 import { createMemo, For, Show } from "solid-js"
 import { AVAILABLE_THEMES, DEFAULT_THEME_SETTINGS, type StoredThemeSettings } from "./settings"
+import { resolveTranslation, type TranslationParams } from "./i18n"
 
 interface Props {
   settings: () => StoredThemeSettings
   update(patch: Partial<StoredThemeSettings>): void
   reset(): void
+  t?: (key: string, params?: TranslationParams) => string
+  locale?: () => string | undefined
 }
 
 export function SettingsView(props: Props) {
   const current = () => ({ ...DEFAULT_THEME_SETTINGS, ...props.settings() })
+
+  const t = (key: string, params?: TranslationParams): string => {
+    if (props.t) {
+      const val = props.t(key, params)
+      if (val && val !== key) return val
+    }
+    return resolveTranslation(props.locale?.(), key, params)
+  }
 
   return (
     <div
@@ -31,7 +42,7 @@ export function SettingsView(props: Props) {
               color: "var(--v2-text-text-base, #ffffff)",
             }}
           >
-            Terminal Console Theme
+            {t("settings.header.title")}
           </h1>
           <span
             style={{
@@ -56,7 +67,7 @@ export function SettingsView(props: Props) {
             "line-height": "1.5",
           }}
         >
-          Authentic OpenCode TUI console markdown styling and custom theme override.
+          {t("settings.header.desc")}
         </p>
       </div>
 
@@ -83,7 +94,7 @@ export function SettingsView(props: Props) {
               color: "var(--v2-text-text-base, #ffffff)",
             }}
           >
-            Application Scope
+            {t("settings.scope.title")}
           </label>
           <p
             style={{
@@ -92,7 +103,7 @@ export function SettingsView(props: Props) {
               margin: "0 0 10px 0",
             }}
           >
-            Choose whether to apply authentic console styling to all themes or override a specific theme only.
+            {t("settings.scope.desc")}
           </p>
 
           <div style={{ display: "flex", gap: "16px" }}>
@@ -112,7 +123,7 @@ export function SettingsView(props: Props) {
                 onChange={() => props.update({ mode: "specific" })}
                 style={{ cursor: "pointer" }}
               />
-              <span>Override specific theme only</span>
+              <span>{t("settings.scope.specific")}</span>
             </label>
 
             <label
@@ -131,7 +142,7 @@ export function SettingsView(props: Props) {
                 onChange={() => props.update({ mode: "all" })}
                 style={{ cursor: "pointer" }}
               />
-              <span>Apply to all themes</span>
+              <span>{t("settings.scope.all")}</span>
             </label>
           </div>
         </div>
@@ -153,7 +164,7 @@ export function SettingsView(props: Props) {
                 color: "var(--v2-text-text-base, #ffffff)",
               }}
             >
-              Target Theme to Override
+              {t("settings.target.title")}
             </label>
             <p
               style={{
@@ -162,7 +173,7 @@ export function SettingsView(props: Props) {
                 margin: "0 0 10px 0",
               }}
             >
-              When this theme is active in Settings → Appearance, the console palette will override it.
+              {t("settings.target.desc")}
             </p>
 
             <select
@@ -203,7 +214,7 @@ export function SettingsView(props: Props) {
               color: "var(--v2-text-text-base, #ffffff)",
             }}
           >
-            Terminal Token Palette
+            {t("settings.palette.title")}
           </label>
           <p
             style={{
@@ -212,7 +223,7 @@ export function SettingsView(props: Props) {
               margin: "0 0 12px 0",
             }}
           >
-            Authentic TUI tokens applied to chat markdown elements:
+            {t("settings.palette.desc")}
           </p>
 
           <div
@@ -222,12 +233,12 @@ export function SettingsView(props: Props) {
               gap: "10px",
             }}
           >
-            <ColorBadge label="Headings" color={current().headingsColor} token="accent.200" />
-            <ColorBadge label="Bold Text" color={current().boldColor} token="markdown.strong" />
-            <ColorBadge label="Inline Code" color={current().inlineCodeColor} token="green.200" />
-            <ColorBadge label="List Numbers" color={current().listNumbersColor} token="cyan.200" />
-            <ColorBadge label="List Bullets" color={current().listBulletsColor} token="orange.200" />
-            <ColorBadge label="Inactive Text" color={current().inactiveBrightness} token="text-faint" />
+            <ColorBadge label={t("settings.token.headings")} color={current().headingsColor} token="accent.200" />
+            <ColorBadge label={t("settings.token.bold")} color={current().boldColor} token="markdown.strong" />
+            <ColorBadge label={t("settings.token.inlineCode")} color={current().inlineCodeColor} token="green.200" />
+            <ColorBadge label={t("settings.token.listNumbers")} color={current().listNumbersColor} token="cyan.200" />
+            <ColorBadge label={t("settings.token.listBullets")} color={current().listBulletsColor} token="orange.200" />
+            <ColorBadge label={t("settings.token.inactive")} color={current().inactiveBrightness} token="text-faint" />
           </div>
         </div>
 
@@ -253,7 +264,7 @@ export function SettingsView(props: Props) {
               cursor: "pointer",
             }}
           >
-            Reset to Defaults
+            {t("settings.action.reset")}
           </button>
         </div>
       </div>
