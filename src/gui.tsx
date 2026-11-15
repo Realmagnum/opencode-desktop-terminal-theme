@@ -13,16 +13,16 @@ function generateThemeCss(s: StoredThemeSettings): string {
   // Light mode keeps each chosen hue, darkened enough to read on a light
   // background; fixed console colours get hand-picked light counterparts.
   const onLight = (value: string) => `color-mix(in srgb, ${value} 62%, #000)`
-  const pair = (dark: string, light: string) => `light-dark(${dark}, ${light})`
+  const pair = (light: string, dark: string) => `light-dark(${light}, ${dark})`
 
   return `
 /* Prose text */
 ${prefix}[data-component="markdown"][data-component="markdown"] {
-  color: ${pair("#eeeeee", "#242424")} !important;
+  color: ${pair("#242424", "#eeeeee")} !important;
 }
 ${prefix}[data-component="markdown"][data-component="markdown"] p,
 ${prefix}[data-component="markdown"][data-component="markdown"] li {
-  color: ${pair("#eeeeee", "#242424")} !important;
+  color: ${pair("#242424", "#eeeeee")} !important;
 }
 
 /* Headings (h1..h6) */
@@ -32,24 +32,24 @@ ${prefix}[data-component="markdown"][data-component="markdown"] h3,
 ${prefix}[data-component="markdown"][data-component="markdown"] h4,
 ${prefix}[data-component="markdown"][data-component="markdown"] h5,
 ${prefix}[data-component="markdown"][data-component="markdown"] h6 {
-  color: light-dark(${s.headingsColor || "#9d7cd8"}, ${onLight(s.headingsColor || "#9d7cd8")}) !important;
+  color: light-dark(${onLight(s.headingsColor || "#9d7cd8")}, ${s.headingsColor || "#9d7cd8"}) !important;
 }
 
 /* Bold / Strong */
 ${prefix}[data-component="markdown"][data-component="markdown"] strong,
 ${prefix}[data-component="markdown"][data-component="markdown"] b {
-  color: light-dark(${s.boldColor || "#f5a742"}, ${onLight(s.boldColor || "#f5a742")}) !important;
+  color: light-dark(${onLight(s.boldColor || "#f5a742")}, ${s.boldColor || "#f5a742"}) !important;
 }
 
 /* Italic / Emphasis */
 ${prefix}[data-component="markdown"][data-component="markdown"] em,
 ${prefix}[data-component="markdown"][data-component="markdown"] i {
-  color: ${pair("#e5c07b", "#7a5c12")} !important;
+  color: ${pair("#7a5c12", "#e5c07b")} !important;
 }
 
 /* Inline code without badge background */
 ${prefix}[data-component="markdown"][data-component="markdown"] :not(pre) > code {
-  color: light-dark(${s.inlineCodeColor || "#7fd88f"}, ${onLight(s.inlineCodeColor || "#7fd88f")}) !important;
+  color: light-dark(${onLight(s.inlineCodeColor || "#7fd88f")}, ${s.inlineCodeColor || "#7fd88f"}) !important;
   background: transparent !important;
   font-weight: 500 !important;
   padding: 0 2px !important;
@@ -57,29 +57,29 @@ ${prefix}[data-component="markdown"][data-component="markdown"] :not(pre) > code
 
 /* Numbered lists (1. 2. 3.) */
 ${prefix}[data-component="markdown"][data-component="markdown"] ol > li::marker {
-  color: light-dark(${s.listNumbersColor || "#56b6c2"}, ${onLight(s.listNumbersColor || "#56b6c2")}) !important;
+  color: light-dark(${onLight(s.listNumbersColor || "#56b6c2")}, ${s.listNumbersColor || "#56b6c2"}) !important;
 }
 
 /* Bullet lists (•) */
 ${prefix}[data-component="markdown"][data-component="markdown"] ul > li::marker {
-  color: light-dark(${s.listBulletsColor || "#fab283"}, ${onLight(s.listBulletsColor || "#fab283")}) !important;
+  color: light-dark(${onLight(s.listBulletsColor || "#fab283")}, ${s.listBulletsColor || "#fab283"}) !important;
 }
 
 /* Links */
 ${prefix}[data-component="markdown"][data-component="markdown"] a {
-  color: ${pair("#56b6c2", "#0b6e7f")} !important;
+  color: ${pair("#0b6e7f", "#56b6c2")} !important;
 }
 
 /* Blockquotes */
 ${prefix}[data-component="markdown"][data-component="markdown"] blockquote {
-  color: ${pair("#e5c07b", "#7a5c12")} !important;
-  border-inline-start: 2px solid ${pair("#56b6c2", "#0b6e7f")} !important;
+  color: ${pair("#7a5c12", "#e5c07b")} !important;
+  border-inline-start: 2px solid ${pair("#0b6e7f", "#56b6c2")} !important;
 }
 
 /* Horizontal rule */
 ${prefix}[data-component="markdown"][data-component="markdown"] hr {
   border: none !important;
-  border-top: 1px solid ${pair("#484848", "#d4d4d4")} !important;
+  border-top: 1px solid ${pair("#d4d4d4", "#484848")} !important;
   height: 0 !important;
 }
 
@@ -87,12 +87,12 @@ ${prefix}[data-component="markdown"][data-component="markdown"] hr {
 ${prefix}[data-titlebar-tab]:not([data-active="true"]) [data-slot="tab-link"],
 ${prefix}[data-titlebar-tab-link]:not([group-data-[active='true']]),
 ${prefix}.text-v2-text-text-faint {
-  color: light-dark(${s.inactiveBrightness || "#8a8a8a"}, ${onLight(s.inactiveBrightness || "#8a8a8a")}) !important;
+  color: light-dark(${onLight(s.inactiveBrightness || "#8a8a8a")}, ${s.inactiveBrightness || "#8a8a8a"}) !important;
 }
 
 /* Sidebar unselected icons */
 ${prefix}.text-v2-icon-icon-muted {
-  color: light-dark(${s.inactiveBrightness || "#8a8a8a"}, ${onLight(s.inactiveBrightness || "#8a8a8a")}) !important;
+  color: light-dark(${onLight(s.inactiveBrightness || "#8a8a8a")}, ${s.inactiveBrightness || "#8a8a8a"}) !important;
 }
 
 /* Composer / text inputs: pure crisp white */
@@ -101,12 +101,12 @@ ${prefix}input,
 ${prefix}[contenteditable="true"],
 ${prefix}[data-slot="textarea-v2-textarea"],
 ${prefix}[data-component="dock-prompt"] textarea {
-  color: ${pair("#ffffff", "#111111")} !important;
+  color: ${pair("#111111", "#ffffff")} !important;
 }
 
 /* Distinct highlight for plugin navigation item in Settings sidebar */
 .settings-nav-groups [data-slot="tabs-v2-trigger-wrapper"][data-value="terminal-theme"] [data-slot="tabs-v2-trigger"] svg {
-  color: ${pair("#9d7cd8", "#6b4fae")} !important;
+  color: ${pair("#6b4fae", "#9d7cd8")} !important;
 }
 
 /* Plugin settings gear button in Extensions -> Plugins list */
@@ -126,7 +126,7 @@ ${prefix}[data-component="dock-prompt"] textarea {
   flex-shrink: 0;
 }
 .terminal-theme-settings-btn:hover {
-  color: ${pair("#b392f0", "#6b4fae")} !important;
+  color: ${pair("#6b4fae", "#b392f0")} !important;
   background-color: var(--v2-background-bg-layer-02, rgba(255, 255, 255, 0.08));
 }
 .terminal-theme-settings-btn svg {
