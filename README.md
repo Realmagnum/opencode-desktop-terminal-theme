@@ -37,6 +37,12 @@ This plugin brings **100% parity with the OpenCode TUI console theme** to OpenCo
 
 ---
 
+## 🌗 Light theme
+
+The palette follows the app's `color-scheme`. Prose and composer text switch to dark ink on light backgrounds (`light-dark()`), and every console colour gets a light counterpart: custom heading/bold/code/list hues are darkened with `color-mix(in srgb, <colour> 62%, #000)`, while fixed colours (italic, links, blockquotes, rules) use hand-picked light values. Selection stays readable because the forced text colour no longer stays white.
+
+---
+
 ## 🎨 Design Tokens Reference
 
 | Markdown Element | TUI Source Token | HEX Color | Visual Preview |
