@@ -37,7 +37,9 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "vite build && cp dist/gui-experimental.cjs gui-experimental.cjs",
+    "check:dom": "node ../opencode-plugin-dom/scripts/check-dom.mjs ."
   },
   "devDependencies": {
     "@opencode/plugin": "^2.2.5",
